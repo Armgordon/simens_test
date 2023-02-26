@@ -1,3 +1,5 @@
 export interface Dot {
-  name: string;
+  id: number;
+  value: number;
+  timestamp: number; // milliseconds
 }

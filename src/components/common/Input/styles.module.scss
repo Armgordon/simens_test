@@ -1,0 +1,85 @@
+@import "../palette/styles.scss";
+@import "../utils/hideHelpers.scss";
+
+.root {
+  box-sizing: border-box;
+
+  .label {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-weight: 600;
+
+    @include use-hidden();
+  }
+
+  .input {
+    display: block;
+
+    width: 100%;
+    min-width: 216px;
+
+    box-sizing: border-box;
+
+    outline: none;
+
+    font-family: "Montserrat";
+    font-size: 14px;
+    line-height: 22px;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type=number] {
+      -moz-appearance: textfield;
+    }
+  }
+
+  &_default {
+    display: inline-block;
+
+    .input {
+      width: 100%;
+      padding: 10px;
+
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 2px;
+
+      @include use-demo-border-color("light-grey");
+
+      &:hover {
+        @include use-demo-border-color("button-normal-blue");
+      }
+
+      &:focus {
+        @include use-demo-border-color("button-hover-blue");
+      }
+
+      &::placeholder {
+        @include use-demo-text-color("menu-text-dirty-grey");
+      }
+
+      &:focus::placeholder {
+        @include use-demo-text-color("light-grey");
+      }
+
+      &:disabled {
+        @include use-demo-background-color("input-disabled-grey");
+        @include use-demo-text-color("menu-text-dirty-grey");
+
+        &:hover {
+          @include use-demo-border-color("light-grey");
+        }
+      }
+
+      &:disabled::placeholder {
+        @include use-demo-text-color("menu-text-dirty-grey");
+      }
+    }
+  }
+}

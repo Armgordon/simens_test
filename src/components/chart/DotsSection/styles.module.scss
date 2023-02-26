@@ -1,0 +1,15 @@
+@import "@components/common/palette/styles.scss";
+
+.root {
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  min-width: 230px;
+  height: 100%;
+
+  padding: 10px 5px;
+  border: 1px solid;
+
+  @include use-demo-color(border-color, 'border-grey');
+}

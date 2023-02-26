@@ -1,0 +1,173 @@
+////
+/// This file contain helper mixins to manage flex containers horizontal and vertical alignment
+/// independent of flex direction.
+////
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Flex horizontal alignment helpers
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+/// Mixin which creates styles for horizontal left alignment of flex container elements independent of flex direction
+/// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
+@mixin use-flex-align-left($direction: row) {
+  @if $direction == row {
+    justify-content: flex-start;
+  }
+
+  @if $direction == row-reverse {
+    justify-content: flex-end;
+  }
+
+  @if $direction == column or $direction == column-reverse {
+    align-items: flex-start;
+  }
+}
+
+/// Mixin which creates styles for horizontal center alignment of flex container elements independent of flex direction
+/// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
+@mixin use-flex-align-center($direction: row) {
+  @if $direction == row or $direction == row-reverse {
+    justify-content: center;
+  }
+
+  @if $direction == column or $direction == column-reverse {
+    align-items: center;
+  }
+}
+
+/// Mixin which creates styles for horizontal right alignment of flex container elements independent of flex direction
+/// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
+@mixin use-flex-align-right($direction: row) {
+  @if $direction == row {
+    justify-content: flex-end;
+  }
+
+  @if $direction == row-reverse {
+    justify-content: flex-start;
+  }
+
+  @if $direction == column or $direction == column-reverse {
+    align-items: flex-end;
+  }
+}
+
+/// Mixin which creates styles for horizontal justify alignment of flex container elements independent of flex direction
+/// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
+@mixin use-flex-align-justify($direction: row) {
+  @if $direction == row or $direction == row-reverse {
+    justify-content: space-between;
+  }
+
+  @if $direction == column or $direction == column-reverse {
+    align-items: flex-start;
+  }
+}
+
+/// Mixin which adds `<class-name>_align*` modifier CSS-classes for horizontal alignment of flex container elements
+/// independent of flex direction.
+/// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
+@mixin use-flex-align($direction: row) {
+  &_alignLeft {
+    @include use-flex-align-left($direction);
+  }
+
+  &_alignCenter {
+    @include use-flex-align-center($direction);
+  }
+
+  &_alignRight {
+    @include use-flex-align-right($direction);
+  }
+
+  &_alignJustify {
+    @include use-flex-align-justify($direction);
+  }
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Flex vertical alignment helpers
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+/// Mixin which creates styles for vertical top alignment of flex container elements independent of flex direction
+/// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
+@mixin use-flex-vertical-align-top($direction: row) {
+  @if $direction == row or $direction == row-reverse {
+    align-items: flex-start;
+  }
+
+  @if $direction == column {
+    justify-content: flex-start;
+  }
+
+  @if $direction == column-reverse {
+    justify-content: flex-end;
+  }
+}
+
+/// Mixin which creates styles for vertical middle alignment of flex container elements independent of flex direction
+/// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
+@mixin use-flex-vertical-align-middle($direction: row) {
+  @if $direction == row or $direction == row-reverse {
+    align-items: center;
+  }
+
+  @if $direction == column or $direction == column-reverse {
+    justify-content: center;
+  }
+}
+
+/// Mixin which creates styles for vertical bottom alignment of flex container elements independent of flex direction
+/// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
+@mixin use-flex-vertical-align-bottom($direction: row) {
+  @if $direction == row or $direction == row-reverse {
+    align-items: flex-end;
+  }
+
+  @if $direction == column {
+    justify-content: flex-end;
+  }
+
+  @if $direction == column-reverse {
+    justify-content: flex-start;
+  }
+}
+
+/// Mixin which creates styles for vertical justify alignment of flex container elements independent of flex direction
+/// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
+@mixin use-flex-vertical-align-justify($direction: row) {
+  @if $direction == row or $direction == row-reverse {
+    align-items: flex-start;
+  }
+
+  @if $direction == column or $direction == column-reverse {
+    justify-content: space-between;
+  }
+}
+
+/// Mixin which adds `<class-name>_verticalAlign*` modifier CSS-classes
+/// for vertical alignment of flex container elements independent of flex direction.
+/// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
+@mixin use-flex-vertical-align($direction: row) {
+  &_verticalAlignTop {
+    @include use-flex-vertical-align-top($direction);
+  }
+
+  &_verticalAlignMiddle {
+    @include use-flex-vertical-align-middle($direction);
+  }
+
+  &_verticalAlignBottom {
+    @include use-flex-vertical-align-bottom($direction);
+  }
+
+  &_verticalAlignJustify {
+    @include use-flex-vertical-align-justify($direction);
+  }
+}
+
+/// Snippet mixin to center the content exactly to the center of the element
+@mixin use-flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,10 +1,8 @@
 import type { Dispatch } from 'redux';
-import { isNil } from 'lodash';
-import type { Dot } from '@domain';
 import { DOTS } from '@api/__mocks__/dots';
 
 import { getCanLoadMore, getOffset } from './selectors';
-import { addOne, addList, setCanLoadMore, setOffset, removeOne, clear } from './actions';
+import { dotsActions, clear } from './actions';
 import type { State } from '../types';
 
 /** How many dashboards can be loaded at time */
@@ -32,9 +30,7 @@ export const loadDotsFromDB =
       // const { objects } = await visitService.getVisitsListByDate(token, currentDate);
       const objects = DOTS;
       dispatch(clear());
-      dispatch(addList(objects));
-      dispatch(setOffset(offset + DOTS_LIMIT));
-      dispatch(setCanLoadMore(!isNil(objects)));
+      dispatch(dotsActions.addList(objects));
     }
   };
 

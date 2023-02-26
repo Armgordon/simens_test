@@ -8,17 +8,5 @@ export {
 } from './reducers';
 export { createReduxStore } from './store';
 export type { SecondArgumentSelector, ThirdArgumentSelector, ImmutableMapItemActionPayload } from './types';
-export {
-  createListStoreActions,
-  createListStoresMapsActions,
-  createListStoreReducer,
-  createListStoresMapsReducer,
-} from './listStore';
-export type {
-  ListStore,
-  ListStoresMaps,
-  ListStoreActions,
-  ListStoresMapsActions,
-  CreateListStoresMapsReducersParams,
-  CreateListStoreReducersParams,
-} from './listStore';
+export { createListStoreActions, createListStoreReducer, createListStoresMapsReducer } from './listStore';
+export type { ListStore, ListStoreActions, CreateListStoreReducersParams } from './listStore';

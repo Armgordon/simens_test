@@ -3,19 +3,12 @@ import type { Dot } from '@domain';
 import type { Chart } from '@store/chart';
 
 import { createListStoreReducer } from '../helpers';
-import { clear, setCanLoadMore, setOffset, addOne, addList, removeOne, removeList } from './actions';
+import { clear, dotsActions } from './actions';
 
-const dots = createListStoreReducer<Dot, 'name'>({
+const dots = createListStoreReducer<Dot, 'id'>({
   clear,
-  idProperty: 'name',
-  actions: {
-    setCanLoadMore,
-    setOffset,
-    addOne,
-    addList,
-    removeOne,
-    removeList,
-  },
+  idProperty: 'id',
+  actions: dotsActions,
 });
 
 export default combineReducers<Chart>({ dots });

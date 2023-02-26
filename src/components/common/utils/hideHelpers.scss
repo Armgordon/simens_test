@@ -1,0 +1,17 @@
+/// Mixin which adds `<class-name>_hidden` modifier CSS class with `display: none !important;` property.
+/// Also you can some additional CSS rules after it.
+@mixin use-hidden() {
+  &_hidden {
+    display: none !important;
+    @content;
+  }
+}
+
+/// Mixin which adds `<class-name>_invisible` modifier CSS class with `visibility: hidden !important;` property.
+/// Also you can some additional CSS rules after it.
+@mixin use-invisible() {
+  &_invisible {
+    visibility: hidden !important;
+    @content;
+  }
+}

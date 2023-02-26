@@ -1,0 +1,37 @@
+@import "../palette/styles.scss";
+@import "../utils/flexAlign.scss";
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 20px;
+
+  box-sizing: border-box;
+  padding: 5px;
+
+  border-width: 1px;
+  border-style: solid;
+
+  @include use-demo-border-color("light-grey");
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .content {
+    display: flex;
+
+    width: 100%;
+
+    white-space: nowrap;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    @include use-flex-align();
+    @include use-flex-vertical-align();
+  }
+}

@@ -118,18 +118,6 @@ const createListStoreReducer = <TYPE, ID extends keyof TYPE>({
   clear,
   sortingCriteria,
 }: CreateListStoreReducersParams<TYPE, ID>): Reducer<ListStore<TYPE>> => {
-  const canLoadMore = reducerWithInitialState<boolean>(stubTrue()).case(actions.setCanLoadMore, replaceReducer);
-
-  if (clear) {
-    canLoadMore.case(clear, stubTrue);
-  }
-
-  const offset = reducerWithInitialState<number>(stubZero()).case(actions.setOffset, replaceReducer);
-
-  if (clear) {
-    offset.case(clear, stubZero);
-  }
-
   const items = reducerWithInitialState<TYPE[]>(stubArray())
     .case(actions.addOne, createAddOneReducer<TYPE, ID>(idProperty, sortingCriteria))
     .case(actions.addList, createAddListReducer<TYPE, ID>(idProperty, sortingCriteria))
@@ -141,8 +129,6 @@ const createListStoreReducer = <TYPE, ID extends keyof TYPE>({
   }
 
   return combineReducers<ListStore<TYPE>>({
-    canLoadMore,
-    offset,
     items,
   });
 };

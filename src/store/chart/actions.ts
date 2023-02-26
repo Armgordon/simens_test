@@ -9,7 +9,4 @@ const creator = actionCreatorFactory('DOTS_LIST');
 export const clear = creator('CLEAR');
 
 // Create standard list store actions
-export const { setCanLoadMore, setOffset, addOne, addList, removeOne, removeList } = createListStoreActions<
-  Dot,
-  'name'
->(creator);
+export const dotsActions = createListStoreActions<Dot, 'id'>(creator);

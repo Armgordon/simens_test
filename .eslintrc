@@ -60,9 +60,6 @@
       },
       "plugins": ["@typescript-eslint", "react-hooks"],
       "parser": "@typescript-eslint/parser",
-      "parserOptions": {
-        "project": "./tsconfig.json"
-      },
       "rules": {
         // Bring back disabled rule
         "@typescript-eslint/no-var-requires": "error",
