@@ -5,59 +5,7 @@ $DEMO-COLORS: (
   "transparent": transparent,
   "border-grey": #444,
   "light-grey": #a5a5a5,
-  "orange": #ce830f,
-  "ava-red": #e1413c,
-  "ava-cherry": #7a1129,
-  "ava-orange": #d57517,
-  "ava-yellow": #e5c766,
-  "ava-grass": #b5ff00,
-  "ava-green": #46cb8a,
-  "ava-teal": #2ccde8,
-  "ava-blue": #2784dc,
-  "ava-stroke-blue": #40bfff,
-  "ava-purple": #6d55da,
-  "menu-background-blue": #03354f,
-  "menu-hover-pressed-dark-blue": #3c4b64,
-  "menu-active-dark-blue": #495977,
-  "table-header-text-blue": #425a70,
-  "text-dark-blue": #234361,
-  "overlay-dark-cyan": rgba(8, 31, 49, 0.6),
-  "modal-divider-black": rgba(0, 0, 0, 0.1),
-  "divider-dark-blue": #384864,
-  "light-brown": #9b9b9b,
-  "grey": #587896,
-  "menu-text-dirty-grey": #afbdd1,
-  "input-disabled-grey": #f0f2f4,
-  "hover-light-blue": #eceff2,
-  "background-light-blue": #f6f9fd,
-  "white": #fff,
-  "button-normal-blue": #237cb0,
-  "button-hover-blue": #4b9fd2,
-  "button-active-blue": #1b5d85,
-  "menu-icons-text-blue": #59b6ff,
-  "table-cell-hover": #e4f0ff,
-  "button-normal-red": #d84b39,
-  "button-hover-red": #e06758,
-  "button-active-red": #ad2716,
-  "table-border": rgba(210, 212, 214, 0.8),
-  "borders": #e2e3e5,
-  "red-pale": #fbe8e8,
-  "orange-pale": #fcf1e6,
-  "yellow-pale": #fdf5da,
-  "green-pale": #e1f3eb,
-  "teal-pale": #e4f5f8,
-  "blue-pale": #e6f0f9,
-  "purple-pale": #f0edfa,
-  "preloader-stroke": rgba(88, 120, 150, 0.2),
-  "blue-card-border": #d5e6f7,
-  "disabled-control": #f2f2f2,
-  "explorer-provider-folder": #f5f5f5,
-  "button-normal-green":#00a355,
-  "button-active-green":#01723c,
-  "button-hover-green":#03c468,
-  "button-normal-orange":#ce830f,
-  "button-active-orange":#bd6e08,
-  "button-hover-orange":#f6a943,
+  "chart-blue": #6892ff,
 );
 
 /** Apply color from application palette to arbitrary CSS property */
@@ -85,6 +33,11 @@ $DEMO-COLORS: (
   @include use-demo-color(border-color, $key);
 }
 
+@mixin use-demo-stroke-color($key) {
+  @include use-demo-color(stroke, $key);
+}
+
+/** Apply color from application palette to `color` CSS property */
 @mixin use-demo-stroke-color($key) {
   @include use-demo-color(stroke, $key);
 }

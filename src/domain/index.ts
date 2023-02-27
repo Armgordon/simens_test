@@ -1,1 +1,2 @@
-export type { Dot } from './Dots';
+export type { Entity } from './common';
+export type { Dot, DotData } from './Dots';

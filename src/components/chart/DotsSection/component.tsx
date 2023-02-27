@@ -6,7 +6,7 @@ import DotsList from '@components/chart/DotsList';
 import type { Dot } from '@domain';
 
 import { useDispatch } from 'react-redux';
-import { dotsActions } from '@store/chart';
+import { dotsActions, saveDotsToDB } from '@store/chart';
 import styles from './styles.module.scss';
 import type { Props } from './types';
 
@@ -28,6 +28,7 @@ const Component: FC<Props> = ({ className }) => {
           id: (ID_COUNTER += 1),
         }),
       );
+      dispatch(saveDotsToDB());
       setInputValue('');
     }
   };

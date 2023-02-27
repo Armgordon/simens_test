@@ -1,3 +1,5 @@
+@import "@components/common/palette/styles.scss";
+
 .root {
   box-sizing: border-box;
   border: 1px solid crimson;
@@ -5,5 +7,16 @@
   height: 100%;
   width: 100%;
 
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  //overflow: hidden;
+}
+
+.chartLine {
+  stroke-width: 3;
+
+  @include use-demo-stroke-color('chart-blue');
 }

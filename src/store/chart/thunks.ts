@@ -1,8 +1,8 @@
 import type { Dispatch } from 'redux';
-import { DOTS } from '@api/__mocks__/dots';
+import DotsStorage from '@store/chart/DotsStorage';
 
-import { getCanLoadMore, getOffset } from './selectors';
-import { dotsActions, clear } from './actions';
+import { getDotsList } from '@store/chart/selectors';
+import { dotsActions } from './actions';
 import type { State } from '../types';
 
 /** How many dashboards can be loaded at time */
@@ -20,18 +20,21 @@ export const DOTS_LIMIT = 10;
  * @returns Redux Thunk function ready to dispatch
  */
 export const loadDotsFromDB =
-  (currentDate: string) =>
-  async (dispatch: Dispatch, getState: () => State): Promise<void> => {
-    const state = getState();
-    const canLoadMore = getCanLoadMore(state) || true;
-    const offset = getOffset(state);
+  () =>
+  async (dispatch: Dispatch): Promise<void> => {
+    const storage = DotsStorage.getInstance();
 
-    if (canLoadMore && currentDate) {
-      // const { objects } = await visitService.getVisitsListByDate(token, currentDate);
-      const objects = DOTS;
-      dispatch(clear());
-      dispatch(dotsActions.addList(objects));
-    }
+    const storageDots = JSON.parse(storage.getDotsValues());
+
+    dispatch(dotsActions.addList(storageDots));
+  };
+
+export const saveDotsToDB =
+  () =>
+  async (dispatch: Dispatch, getState: () => State): Promise<void> => {
+    const storage = DotsStorage.getInstance();
+    const storeDots = getDotsList(getState());
+    storage.setDotsValues(JSON.stringify(storeDots));
   };
 
 // /**
