@@ -24,7 +24,7 @@ const Component: FC<Props> = ({
   const onChangeInternal = useOnChange(onChange);
 
   return (
-    <div className={classnames(styles.root, className)}>
+    <div className={classnames(styles.Input, className)}>
       <label className={labelClassNames} htmlFor={externalId}>
         {label}
       </label>

@@ -1,90 +1,17 @@
-import * as d3 from 'd3';
 import type { FC } from 'react';
 import classnames from 'classnames';
-import { useDotsList } from '@components/selectHooks/chartHooks';
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import type { DotData } from '@domain';
-
+import { CHART_MARGINS, useCalculateChartData, useDimensionsEffect, useViewBox } from './behavior';
 import styles from './styles.module.scss';
 import type { Props } from './types';
 
-const CHART_MARGINS = {
-  top: 20,
-  right: 20,
-  bottom: 20,
-  left: 25,
-};
-
 const Component: FC<Props> = ({ className }) => {
-  const [dotsData, setDotsData] = useState<DotData[]>([]);
-  const [dimensions, setDimensions] = useState({
-    height: window.innerHeight,
-    width: window.innerWidth,
-  });
-  const { width, height } = dimensions;
-
-  const dots = useDotsList();
-
-  const xAxisRef = useRef<any>(null);
-  const yAxisRef = useRef<any>(null);
-
-  // Resize observer
-  useEffect(() => {
-    function handleResize() {
-      setDimensions({
-        height: window.innerHeight,
-        width: window.innerWidth,
-      });
-    }
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  // d3 calculations
-  useLayoutEffect(() => {
-    const xRes = dots.map((item) => new Date(item.timestamp));
-    const xScale = d3
-      .scaleTime()
-      .range([0, width])
-      .domain([d3.min(xRes) ?? 0, d3.max(xRes) ?? 1]);
-
-    const xAxis = d3.axisBottom(xScale).tickFormat((d, i) => {
-      const date = d as Date;
-      return `${date.getMinutes()}:${date.getSeconds()}:${date.getMilliseconds()}`;
-    });
-
-    d3.select(xAxisRef.current).call(xAxis);
-
-    const yRes = dots.map((item) => item.value);
-    const yScale = d3
-      .scaleLinear()
-      .range([0, height])
-      .domain([d3.max(yRes) ?? 1, d3.min(yRes) ?? 0]);
-
-    const yAxis = d3.axisLeft(yScale).tickFormat((d, i) => d.toString());
-
-    d3.select(yAxisRef.current).call(yAxis);
-
-    setDotsData(
-      dots.map((item) => ({
-        id: item.id,
-        x: xScale(Number(item.timestamp)),
-        y: yScale(item.value),
-        value: item.value,
-      })),
-    );
-  }, [dots, height, width]);
-
-  const viewBox = `0 ${-CHART_MARGINS.top - CHART_MARGINS.bottom} ${width + CHART_MARGINS.left} ${
-    height + CHART_MARGINS.top + CHART_MARGINS.bottom
-  }`;
+  const { width, height } = useDimensionsEffect();
+  const { dotsData, xAxisRef, yAxisRef } = useCalculateChartData(width, height);
+  const viewBox = useViewBox(width, height);
 
   return (
-    <div className={classnames(styles.root, className)}>
+    <div className={classnames(styles.ChartSection, className)}>
       <svg height="100%" width="100%" viewBox={viewBox}>
         <g ref={xAxisRef} transform={`translate(${CHART_MARGINS.left}, ${height - CHART_MARGINS.bottom})`} />
         <g ref={yAxisRef} transform={`translate(${CHART_MARGINS.left}, ${-CHART_MARGINS.bottom})`} />

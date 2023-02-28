@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { Provider } from 'react-redux';
 import ChartPage from '@components/chart/ChartPage';
-import Layout from '@components/Layout';
+import Layout from '@components/wrapper/Layout';
 
 import type { Props } from './types';
 

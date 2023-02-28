@@ -12,7 +12,7 @@ const Component: FC<Props> = ({ className, id, value, timestamp }) => {
   const onRemoveDot = useRemoveDot(id);
 
   return (
-    <div className={classnames(styles.root, className)}>
+    <div className={classnames(styles.Item, className)}>
       <span>{dotTime}</span>
       <span className={styles.value}>{value}</span>
       <Button contentAlign={FlexAlign.CENTER} contentVerticalAlign={FlexVerticalAlign.MIDDLE} onClick={onRemoveDot}>
@@ -22,6 +22,6 @@ const Component: FC<Props> = ({ className, id, value, timestamp }) => {
   );
 };
 
-Component.displayName = 'BlankComponent';
+Component.displayName = 'DotsList.Item';
 
 export default Component;

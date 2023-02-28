@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useCallback } from 'react';
-import { dotsActions, saveDotsToDB } from '@store/chart';
+import { dotsActions, saveDotsToLS } from '@store/chart';
 
 export const useDotListTime = (timestamp: number): string => {
   const date = new Date(timestamp);
@@ -11,6 +11,6 @@ export const useRemoveDot = (id: number): (() => void) => {
   const dispatch = useDispatch();
   return useCallback(() => {
     dispatch(dotsActions.removeOne(id));
-    dispatch(saveDotsToDB());
+    dispatch(saveDotsToLS());
   }, [dispatch, id]);
 };

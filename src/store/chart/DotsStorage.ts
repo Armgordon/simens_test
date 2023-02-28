@@ -10,24 +10,24 @@ export default class DotsStorage {
     return DotsStorage.instance;
   }
 
-  /** Access JSON Web Token local storage unique key */
+  /** Access dots local storage unique key */
   public readonly dotsValuesKey: string;
 
   private constructor() {
     this.dotsValuesKey = 'dots_key';
   }
 
-  /** Get access JSON Web Token from local storage */
+  /** Get chart dots from local storage */
   public getDotsValues(): string {
     return localStorage.getItem(this.dotsValuesKey) || '';
   }
 
-  /** Save access JSON Web Token into local storage */
+  /** Save chart dots  into local storage */
   public setDotsValues(value: string): void {
     localStorage.setItem(this.dotsValuesKey, value);
   }
 
-  /** Remove access JSON Web Token from local storage */
+  /** Remove chart dots from local storage */
   public removeDotsValues(): void {
     localStorage.removeItem(this.dotsValuesKey);
   }

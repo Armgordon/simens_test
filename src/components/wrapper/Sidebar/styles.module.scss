@@ -1,0 +1,49 @@
+@import "@components/common/palette/styles.scss";
+
+.SideBar {
+  position: relative;
+
+  display: block;
+
+  min-width: 200px;
+
+  @include use-demo-box-shadow("medium");
+
+  .button {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+
+    width: 0;
+    height: 0;
+    padding: 0;
+
+    transform: translateY(-50%);
+
+    &_reversed {
+      transform: scaleX(-1);
+    }
+  }
+
+  .triangle {
+    width: 35px;
+    height: 75px;
+  }
+
+  &_left {
+    .button {
+      right: 0;
+    }
+  }
+
+  &_right {
+    .button {
+      left: 0;
+    }
+  }
+
+  &_colapsed {
+    width: 0;
+    min-width: unset;
+  }
+}

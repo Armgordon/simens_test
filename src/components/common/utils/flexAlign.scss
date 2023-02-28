@@ -1,12 +1,6 @@
-////
-/// This file contain helper mixins to manage flex containers horizontal and vertical alignment
-/// independent of flex direction.
-////
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Flex horizontal alignment helpers
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /// Mixin which creates styles for horizontal left alignment of flex container elements independent of flex direction
 /// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
 @mixin use-flex-align-left($direction: row) {
@@ -23,8 +17,8 @@
   }
 }
 
-/// Mixin which creates styles for horizontal center alignment of flex container elements independent of flex direction
-/// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
+// Mixin which creates styles for horizontal center alignment of flex container elements independent of flex direction
+// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
 @mixin use-flex-align-center($direction: row) {
   @if $direction == row or $direction == row-reverse {
     justify-content: center;
@@ -35,8 +29,8 @@
   }
 }
 
-/// Mixin which creates styles for horizontal right alignment of flex container elements independent of flex direction
-/// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
+// Mixin which creates styles for horizontal right alignment of flex container elements independent of flex direction
+// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
 @mixin use-flex-align-right($direction: row) {
   @if $direction == row {
     justify-content: flex-end;
@@ -51,8 +45,8 @@
   }
 }
 
-/// Mixin which creates styles for horizontal justify alignment of flex container elements independent of flex direction
-/// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
+//Mixin which creates styles for horizontal justify alignment of flex container elements independent of flex direction
+// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
 @mixin use-flex-align-justify($direction: row) {
   @if $direction == row or $direction == row-reverse {
     justify-content: space-between;
@@ -63,9 +57,9 @@
   }
 }
 
-/// Mixin which adds `<class-name>_align*` modifier CSS-classes for horizontal alignment of flex container elements
-/// independent of flex direction.
-/// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
+// Mixin which adds `<class-name>_align*` modifier CSS-classes for horizontal alignment of flex container elements
+// independent of flex direction.
+// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
 @mixin use-flex-align($direction: row) {
   &_alignLeft {
     @include use-flex-align-left($direction);
@@ -84,10 +78,9 @@
   }
 }
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Flex vertical alignment helpers
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 /// Mixin which creates styles for vertical top alignment of flex container elements independent of flex direction
 /// @param $direction - flex container direction (from `flex-direction` property). `row` by default.
 @mixin use-flex-vertical-align-top($direction: row) {

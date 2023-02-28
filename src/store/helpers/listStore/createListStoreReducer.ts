@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
 import type { Reducer } from 'redux';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { sortBy, stubArray, stubTrue, uniqBy } from 'lodash';
+import { sortBy, stubArray, uniqBy } from 'lodash';
 
 import type { CreateListStoreReducersParams, ListStore } from './types';
-import { replaceReducer, stubZero } from '../reducers';
 
 /**
  * Create reducer for `addOne` action

@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import { useMemo } from 'react';
+import { ButtonTheme } from '@components/common/Button/types';
 
 import { FlexAlign, FlexVerticalAlign, useFlexAlignMapping, useFlexVerticalAlignMapping } from '../utils/flexAlign';
 import styles from './styles.module.scss';
@@ -29,3 +30,27 @@ export const useContentClassList = (
     [alignMapping, verticalAlignMapping, contentClassName],
   );
 };
+
+/**
+ * Hook which returns CSS-classes list for root element
+ *
+ * @param [theme] Button theme.
+ * @param [className] Additional CSS class for root element
+ *
+ * @returns Formatted CSS-classes list divided by space
+ */
+export const useRootClassList = (
+  theme?: ButtonTheme | null | undefined,
+  className?: string | null | undefined,
+): string =>
+  useMemo(
+    () =>
+      classnames(
+        styles.Button,
+        {
+          [styles.Button_themeIcon]: theme === ButtonTheme.ICON,
+        },
+        className,
+      ),
+    [className, theme],
+  );

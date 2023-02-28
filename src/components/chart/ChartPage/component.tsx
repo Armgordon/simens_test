@@ -2,7 +2,6 @@ import type { FC } from 'react';
 import classnames from 'classnames';
 
 import ChartSection from '../ChartSection';
-import Sidebar from '../Sidebar';
 import DotsSection from '../DotsSection';
 import styles from './styles.module.scss';
 import type { Props } from './types';

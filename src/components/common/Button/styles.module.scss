@@ -1,19 +1,18 @@
-@import "../palette/styles.scss";
+@import "@components/common/palette/styles.scss";
 @import "../utils/flexAlign.scss";
 
-.root {
+.Button {
   display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 70px;
-  height: 20px;
 
   box-sizing: border-box;
+  width: 70px;
+  height: 20px;
   padding: 5px;
 
   border-width: 1px;
   border-style: solid;
+  align-items: center;
+  justify-content: center;
 
   @include use-demo-border-color("light-grey");
 
@@ -33,5 +32,32 @@
 
     @include use-flex-align();
     @include use-flex-vertical-align();
+  }
+
+  &_themeIcon {
+    border: none;
+    background: none;
+
+    @include use-demo-text-color("text-dark-blue");
+
+    svg {
+      @include use-demo-fill-color("button-normal-blue");
+    }
+
+    &:hover {
+      @include use-demo-text-color("button-hover-blue");
+
+      svg {
+        @include use-demo-fill-color("button-hover-blue");
+      }
+    }
+
+    &:active {
+      @include use-demo-text-color("button-active-blue");
+
+      svg {
+        @include use-demo-fill-color("button-active-blue");
+      }
+    }
   }
 }

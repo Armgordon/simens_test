@@ -20,6 +20,8 @@
     "typeRoots": ["@types/", "node_modules/@types/"],
     "baseUrl": "src",
     "paths": {
+      "@assets": ["assets/"],
+      "@assets/*": ["assets/*"],
       "@api": ["api/"],
       "@api/*": ["api/*"],
       "@domain": ["domain/"],

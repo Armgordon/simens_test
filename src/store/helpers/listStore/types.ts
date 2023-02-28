@@ -1,7 +1,4 @@
 import type { ActionCreator } from 'typescript-fsa';
-import type { Map as ImmutableMap } from 'immutable';
-
-import type { ImmutableMapItemActionPayload } from '../types';
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // List store types

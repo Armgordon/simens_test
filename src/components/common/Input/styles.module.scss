@@ -1,7 +1,7 @@
-@import "../palette/styles.scss";
-@import "../utils/hideHelpers.scss";
+@import "@components/common/palette/styles.scss";
+@import "@components/common/utils/hideHelpers.scss";
 
-.root {
+.Input {
   box-sizing: border-box;
 
   .label {
@@ -17,25 +17,24 @@
   .input {
     display: block;
 
+    box-sizing: border-box;
     width: 100%;
     min-width: 216px;
 
-    box-sizing: border-box;
-
     outline: none;
 
-    font-family: "Montserrat";
     font-size: 14px;
     line-height: 22px;
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
+      appearance: none;
+
       margin: 0;
     }
 
-    &[type=number] {
-      -moz-appearance: textfield;
+    &[type="number"] {
+      appearance: textfield;
     }
   }
 

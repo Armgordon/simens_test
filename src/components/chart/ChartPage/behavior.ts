@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loadDotsFromDB, saveDotsToDB } from '@store/chart';
+import { loadDotsFromLS } from '@store/chart';
 
 export const useLoadStorageDotsEffect = (): boolean => {
   const dispatch = useDispatch();
@@ -9,9 +9,9 @@ export const useLoadStorageDotsEffect = (): boolean => {
   const onMount = useCallback(async () => {
     try {
       setIsLoading(true);
-      await dispatch(loadDotsFromDB());
-    } catch (err) {
-      console.error(err instanceof Error ? err.message : 'Error was thrown');
+      await dispatch(loadDotsFromLS());
+    } catch (_) {
+      console.error("There wasn't chart data in prev session");
     } finally {
       setIsLoading(false);
     }

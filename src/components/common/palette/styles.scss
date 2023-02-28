@@ -33,10 +33,6 @@ $DEMO-COLORS: (
   @include use-demo-color(border-color, $key);
 }
 
-@mixin use-demo-stroke-color($key) {
-  @include use-demo-color(stroke, $key);
-}
-
 /** Apply color from application palette to `color` CSS property */
 @mixin use-demo-stroke-color($key) {
   @include use-demo-color(stroke, $key);
@@ -44,21 +40,7 @@ $DEMO-COLORS: (
 
 /** Application palette available box shadows (all values for `box-shadow` property) */
 $DEMO-SHADOWS: (
-  "medium": 0 2px 6px #a1a1a1,
-  "menu-bar": 0 4px 4px #ababab,
-  "profile-dropdown": 0 2px 8px #484848,
-  "button-normal": 0 2px 4px #bfbfbf,
-  "button-hover-blue": 0 4px 10px #d6effe,
-  "button-active-blue": 0 2px 6px #b5ddf5,
-  "button-hover-red": 0 4px 10px #fde1e1,
-  "button-active-red": 0 2px 6px #f5c9c9,
-  "table-header": 0 1px 0 #d2d4d6,
-  "table-body": 0 1px 0 #e2e3e5,
-  "dropdown-last-cell": 0 1px 0 #e2e3e5,
-  "card-normal-shadow": 0 2px 4px #dae5ec,
-  "card-hover-active-shadow": 0 2px 8px #d3e6f1,
-  "profile-dropdown-shadow": 0 2px 2px #607ba8,
-  "blue-table-border": 0 1px 0 #d5e6f7
+  "medium": 0 2px 6px #999,
 );
 
 /** Apply `box-shadow` property value from application palette to stylesheet */
