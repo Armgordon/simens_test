@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import classnames from 'classnames';
 import { useDotsList } from '@components/selectHooks/chartHooks';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { DotData } from '@domain';
 
 import styles from './styles.module.scss';
@@ -18,16 +18,34 @@ const CHART_MARGINS = {
 
 const Component: FC<Props> = ({ className }) => {
   const [dotsData, setDotsData] = useState<DotData[]>([]);
-  const width = 1440;
-  const height = 1080;
+  const [dimensions, setDimensions] = useState({
+    height: window.innerHeight,
+    width: window.innerWidth,
+  });
+  const { width, height } = dimensions;
 
   const dots = useDotsList();
 
   const xAxisRef = useRef<any>(null);
   const yAxisRef = useRef<any>(null);
 
+  // Resize observer
   useEffect(() => {
-    // X axis
+    function handleResize() {
+      setDimensions({
+        height: window.innerHeight,
+        width: window.innerWidth,
+      });
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  // d3 calculations
+  useLayoutEffect(() => {
     const xRes = dots.map((item) => new Date(item.timestamp));
     const xScale = d3
       .scaleTime()
@@ -41,7 +59,6 @@ const Component: FC<Props> = ({ className }) => {
 
     d3.select(xAxisRef.current).call(xAxis);
 
-    // Y axis
     const yRes = dots.map((item) => item.value);
     const yScale = d3
       .scaleLinear()
@@ -60,7 +77,7 @@ const Component: FC<Props> = ({ className }) => {
         value: item.value,
       })),
     );
-  }, [dots]);
+  }, [dots, height, width]);
 
   const viewBox = `0 ${-CHART_MARGINS.top - CHART_MARGINS.bottom} ${width + CHART_MARGINS.left} ${
     height + CHART_MARGINS.top + CHART_MARGINS.bottom
@@ -68,12 +85,12 @@ const Component: FC<Props> = ({ className }) => {
 
   return (
     <div className={classnames(styles.root, className)}>
-      <svg viewBox={viewBox} preserveAspectRatio="xMidYMid meet">
+      <svg height="100%" width="100%" viewBox={viewBox}>
         <g ref={xAxisRef} transform={`translate(${CHART_MARGINS.left}, ${height - CHART_MARGINS.bottom})`} />
         <g ref={yAxisRef} transform={`translate(${CHART_MARGINS.left}, ${-CHART_MARGINS.bottom})`} />
         <g className={styles.chart} transform={`translate(${CHART_MARGINS.left}, ${-CHART_MARGINS.bottom})`}>
-          {dotsData.map((curr, index, initial) => {
-            const prev = initial[index - 1];
+          {dotsData.map((curr, index, origin) => {
+            const prev = origin[index - 1];
             return (
               <g key={curr.id}>
                 {index && <line x1={prev.x} x2={curr.x} y1={prev.y} y2={curr.y} className={styles.chartLine} />}

@@ -1,24 +1,25 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadDotsFromDB, saveDotsToDB } from '@store/chart';
 
-export const useLoadStorageDotsEffect = () => {
+export const useLoadStorageDotsEffect = (): boolean => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const onMount = useCallback(async () => {
     try {
+      setIsLoading(true);
       await dispatch(loadDotsFromDB());
     } catch (err) {
       console.error(err instanceof Error ? err.message : 'Error was thrown');
+    } finally {
+      setIsLoading(false);
     }
-  }, [dispatch]);
-
-  const onUnmount = useCallback(() => {
-    dispatch(saveDotsToDB());
   }, [dispatch]);
 
   useEffect(() => {
     onMount();
-    return onUnmount();
-  }, [onMount, onUnmount]);
+  }, [onMount]);
+
+  return isLoading;
 };

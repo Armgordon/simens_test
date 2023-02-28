@@ -1,6 +1,5 @@
-/** `BlankComponent` component properties */
+/** `Layout` component properties */
 export interface Props {
   /** Extra classnames */
   className?: string;
-  isLoading: boolean;
 }

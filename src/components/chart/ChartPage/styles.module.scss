@@ -2,6 +2,7 @@
 @import "@components/common/utils/flexAlign.scss";
 
 .chartPage {
+  position: relative;
   display: flex;
 
   box-sizing: border-box;

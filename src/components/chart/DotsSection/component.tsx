@@ -1,5 +1,5 @@
 import type { FC, KeyboardEvent } from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { memo, useState } from 'react';
 import classnames from 'classnames';
 import Input, { InputType } from '@components/common/Input';
 import DotsList from '@components/chart/DotsList';
@@ -13,9 +13,7 @@ import type { Props } from './types';
 /***/
 let ID_COUNTER = 0;
 
-const Component: FC<Props> = ({ className }) => {
-  const startTime = useRef<number>(Date.now());
-
+const Component: FC<Props> = ({ className, isLoading }) => {
   // input control
   const [inputValue, setInputValue] = useState('');
   const dispatch = useDispatch();
@@ -24,7 +22,7 @@ const Component: FC<Props> = ({ className }) => {
       dispatch(
         dotsActions.addOne({
           value: Number(inputValue),
-          timestamp: Date.now() - startTime.current,
+          timestamp: Date.now(),
           id: (ID_COUNTER += 1),
         }),
       );
@@ -41,6 +39,7 @@ const Component: FC<Props> = ({ className }) => {
         value={inputValue}
         onChange={setInputValue}
         onKeyDown={onKeyboardEvent}
+        disabled={isLoading}
       />
       <DotsList />
     </div>
@@ -49,4 +48,4 @@ const Component: FC<Props> = ({ className }) => {
 
 Component.displayName = 'DotsSection';
 
-export default Component;
+export default memo(Component);

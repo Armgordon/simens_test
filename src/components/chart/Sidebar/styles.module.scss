@@ -1,0 +1,10 @@
+.root {
+  display: block;
+  width: 300px;
+
+  background: yellow;
+
+  &_colapsed {
+    width: 0;
+  }
+}
