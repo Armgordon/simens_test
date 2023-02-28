@@ -1,8 +1,10 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { MutableRefObject } from 'react';
 import * as d3 from 'd3';
 import { useDotsList } from '@components/selectHooks/chartHooks';
 import type { DotData } from '@domain';
+import { useSelector } from 'react-redux';
+import { getLeftSidebarState, getRightSidebarState } from '@store/layout';
 
 export const CHART_MARGINS = {
   top: 20,
@@ -12,30 +14,32 @@ export const CHART_MARGINS = {
 };
 
 export const useDimensionsEffect = (): { width: number; height: number } => {
+  const sidebarsOffset = (Number(!useSelector(getLeftSidebarState)) + Number(!useSelector(getRightSidebarState))) * 200;
+
   const [dimensions, setDimensions] = useState({
     height: window.innerHeight,
-    width: window.innerWidth,
+    width: window.innerWidth - sidebarsOffset,
   });
+
+  const updateDimensions = useCallback(() => {
+    setDimensions({
+      height: window.innerHeight,
+      width: window.innerWidth - sidebarsOffset,
+    });
+  }, [sidebarsOffset]);
 
   /** Resize observer
    * Альтернатива применения RO
-
    * preserveAspectRatio="none" для svg контейнера:
    * (визуально при ресайзе выглядит хуже, но не вызывает ререндеров)
    * */
   useEffect(() => {
-    function handleResize() {
-      setDimensions({
-        height: window.innerHeight,
-        width: window.innerWidth,
-      });
-    }
-
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', updateDimensions);
+    updateDimensions();
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', updateDimensions);
     };
-  }, []);
+  }, [sidebarsOffset, updateDimensions]);
 
   return {
     width: dimensions.width,

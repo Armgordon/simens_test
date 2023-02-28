@@ -13,3 +13,8 @@ You may also see any lint errors in the console.
 ### `npm run build`
 
 Builds the app for production to the `distr` folder.
+
+### Для ресайза графика выбран 'resize' listener
+
+Альтернатива применения preserveAspectRatio="none" для svg контейнера:
+(визуально при ресайзе выглядит хуже, но не вызывает ререндеров)
